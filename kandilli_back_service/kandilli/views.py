@@ -4,6 +4,7 @@ from django.core import serializers
 from daL.main import main
 from daL.helpers.checkerror import log_debug, log_error
 import json
+from datetime import datetime
 
 
 
@@ -40,4 +41,11 @@ def kandilli_remote(request):
     finally:
         if status:
             log_debug("HEALTHY-DJANGO-TO-DB")
-            return HttpResponse(status, content_type='text/plain')
+            date = str(datetime.now())
+            return HttpResponse("{}-{}".format(date,status))
+
+
+    return HttpResponse("{}-{}".format(date,status))
+
+
+

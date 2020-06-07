@@ -3,6 +3,8 @@ version: "3"
 services:
   djangoapp_remote:
     image: emrahburak/microservice-kandilli-back-dev:0.1.0
+    # build:
+    #   context: ./
     volumes:
       - .:/app
 
@@ -10,11 +12,30 @@ services:
       - ./config/db/.env
     ports:
       - 8001:8001
-    # networks:
-    #   - nginx_network
-    #   - databasepostgresql_network
-    # depends_on:
-    #   - databasepostgresql
+    networks:
+      - postgresql_nt
+    depends_on:
+      - databasepostgresql
+
+  databasepostgresql:
+    image: postgres:latest
+      
+    env_file:
+      - ./config/db/.env
+    volumes:
+      - get-some-microservices_databasepostgresql_volume_swarm:/var/lib/postgresql/data
+      # - databasepostgresql_volume_remote:/var/lib/postgresql/data
+    networks:
+      - postgresql_nt
 
 
+networks:
+  postgresql_nt:
+    driver: bridge
+
+
+volumes:
+  get-some-microservices_databasepostgresql_volume_swarm:
+  
+  
     

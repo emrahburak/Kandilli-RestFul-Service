@@ -3,6 +3,8 @@ version: "3"
 services:
   djangoapp_front:
     image: emrahburak/microservice-kandilli-front-prod:0.0.1
+    # build:
+    #   context: ./kandilli_front_service/
     volumes:
       - djangoapp_front_vol:/www
 
@@ -16,6 +18,8 @@ services:
 
   djangoapp_back:
     image: emrahburak/microservice-kandilli-back-prod:0.1.0
+    # build:
+    #   context: ./kandilli_back_service/
     volumes:
       - djangoapp_back_vol:/www
 
