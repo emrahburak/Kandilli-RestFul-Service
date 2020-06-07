@@ -77,6 +77,9 @@ services:
       # - databasepostgresql_volume_remote:/var/lib/postgresql/data
     networks:
       - postgresql_nt
+    deploy:
+      mode: replicated
+      replicas: 2
 
 
 
