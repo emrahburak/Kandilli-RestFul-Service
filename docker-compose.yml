@@ -77,20 +77,25 @@ services:
       # - databasepostgresql_volume_remote:/var/lib/postgresql/data
     networks:
       - postgresql_nt
-    deploy:
-      mode: replicated
-      replicas: 2
 
 
 
         
+# networks:
+#   nginx_front_nt:
+#     driver: bridge
+#   nginx_back_nt:
+#     driver: bridge
+#   postgresql_nt:
+#     driver: bridge
+
 networks:
   nginx_front_nt:
-    driver: bridge
+    driver: overlay
   nginx_back_nt:
-    driver: bridge
+    driver: overlay
   postgresql_nt:
-    driver: bridge
+    driver: overlay
     
 
 volumes:
