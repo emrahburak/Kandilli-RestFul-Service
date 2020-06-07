@@ -6,7 +6,7 @@ services:
     # build:
     #   context: ./kandilli_front_service/
     volumes:
-      - djangoapp_front_vol:/www
+      - djangoapp_front_vol:/app
 
     env_file:
       - ./config/db/.env
@@ -21,7 +21,7 @@ services:
     # build:
     #   context: ./kandilli_back_service/
     volumes:
-      - djangoapp_back_vol:/www
+      - djangoapp_back_vol:/app
 
     env_file:
       - ./config/db_remote/.env
@@ -77,9 +77,9 @@ services:
       # - databasepostgresql_volume_remote:/var/lib/postgresql/data
     networks:
       - postgresql_nt
-    deploy:
-      mode: replicated
-      replicas: 2
+    # deploy:
+    #   mode: replicated
+    #   replicas: 2
 
 
 
