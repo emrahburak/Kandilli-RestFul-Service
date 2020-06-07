@@ -1,0 +1,8 @@
+
+bs4
+Django
+html5lib
+requests
+gunicorn
+psycopg2
+python-dotenv

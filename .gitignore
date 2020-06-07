@@ -1,0 +1,6 @@
+docker-compose.prod.yml
+/config/db/.env_backup
+/config/db_remote/env_backup
+*~
+*/*~
+*/*/__pycache__

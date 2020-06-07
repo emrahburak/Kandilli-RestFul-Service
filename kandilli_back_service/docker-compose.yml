@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  djangoapp_remote:
+    image: emrahburak/microservice-kandilli-back-dev:0.1.0
+    volumes:
+      - .:/app
+
+    env_file:
+      - ./config/db/.env
+    ports:
+      - 8001:8001
+    # networks:
+    #   - nginx_network
+    #   - databasepostgresql_network
+    # depends_on:
+    #   - databasepostgresql
+
+
+    

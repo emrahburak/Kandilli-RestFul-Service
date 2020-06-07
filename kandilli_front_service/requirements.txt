@@ -1,0 +1,6 @@
+
+
+Django
+gunicorn
+psycopg2
+python-dotenv
