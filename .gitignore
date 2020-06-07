@@ -4,3 +4,4 @@ docker-compose.prod.yml
 *~
 */*~
 */*/__pycache__
+*/*/*/__pycache__
