@@ -2,7 +2,7 @@ version: "3"
 
 services:
   djangoapp_front:
-    image : emrahburak/api-lab-kandilli-front-prod:0.0.1
+    image : emrahburak/api-lab-kandilli-front-prod:0.1.0
     # build:
     #   context: ./kandilli_front_service/
     volumes:
