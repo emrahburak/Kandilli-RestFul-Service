@@ -85,21 +85,21 @@ services:
 
 
         
-networks:
-  nginx_front_nt:
-    driver: bridge
-  nginx_back_nt:
-    driver: bridge
-  postgresql_nt:
-    driver: bridge
-
 # networks:
 #   nginx_front_nt:
-#     driver: overlay
+#     driver: bridge
 #   nginx_back_nt:
-#     driver: overlay
+#     driver: bridge
 #   postgresql_nt:
-#     driver: overlay
+#     driver: bridge
+
+networks:
+  nginx_front_nt:
+    driver: overlay
+  nginx_back_nt:
+    driver: overlay
+  postgresql_nt:
+    driver: overlay
     
 
 volumes:
