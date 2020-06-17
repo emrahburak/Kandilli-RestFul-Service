@@ -1,8 +1,8 @@
 from django.shortcuts import HttpResponse
 from .models import Kandilli
 from django.core import serializers
-from daL.main import main
-from daL.helpers.checkerror import log_debug, log_error
+from webscrap.main import main
+from webscrap.helpers.checkerror import log_debug, log_error
 import json
 from datetime import datetime
 
