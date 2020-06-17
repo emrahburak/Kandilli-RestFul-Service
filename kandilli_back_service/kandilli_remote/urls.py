@@ -18,5 +18,5 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/microservice/', include("kandilli.urls"), name="microservice"),
+    path('api/microservice/', include("microservice.urls"), name="microservice"),
 ]
