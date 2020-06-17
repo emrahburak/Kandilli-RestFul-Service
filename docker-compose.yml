@@ -17,7 +17,7 @@ services:
       - databasepostgresql
 
   djangoapp_back:
-    image : emrahburak/api-lab-kandilli-back-prod:0.2.1
+    image : emrahburak/api-lab-kandilli-back-prod:0.2.2
     # build:
     #   context: ./kandilli_back_service/
     volumes:
