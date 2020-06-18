@@ -2,9 +2,9 @@ version: "3"
 
 services:
   djangoapp_remote:
-    image: emrahburak/microservice-kandilli-back-dev:0.1.0
-    # build:
-    #   context: ./
+    #image: emrahburak/microservice-kandilli-back-dev:0.1.0
+    build:
+      context: ./
     volumes:
       - .:/app
 

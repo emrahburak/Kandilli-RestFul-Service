@@ -18,7 +18,7 @@ services:
 
   djangoapp_back:
 
-    image: emrahburak/api-lab-kandilli-back-prod:0.3.0
+    image: emrahburak/api-lab-kandilli-back-prod:0.4.0
     # build:
     #   context: ./kandilli_back_service/
     volumes:

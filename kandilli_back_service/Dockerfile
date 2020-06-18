@@ -36,4 +36,4 @@ EXPOSE 8001
 
 CMD ["gunicorn","--chdir","app","--bind",":8001","kandilli_remote.wsgi:application"]
 # ENTRYPOINT [ "python"]
-# CMD [ "python","/app/manage.py", "runserver", "0.0.0.0:8001"]
+#CMD [ "python","/app/manage.py", "runserver", "0.0.0.0:8001"]
