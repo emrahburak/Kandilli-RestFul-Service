@@ -63,7 +63,7 @@ services:
     networks:
       - nginx_back_nt
     healthcheck:
-      test: curl -sS http://0.0.0.0/api/microservice/kandilli/ || exit 1
+      test: curl -sS http://0.0.0.0/api/service/kandilli/ || exit 1
       interval: 1m
       timeout: 30s
       retries: 2
