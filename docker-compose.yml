@@ -1,4 +1,4 @@
-version: "3"
+version: "3.2"
 
 services:
   djangoapp_front:
@@ -75,7 +75,6 @@ services:
       - ./config/db/.env
     volumes:
       - databasepostgresql_volume_swarm:/var/lib/postgresql/data
-      # - databasepostgresql_volume_remote:/var/lib/postgresql/data
     networks:
       - postgresql_nt
     # deploy:
@@ -100,6 +99,7 @@ networks:
     driver: overlay
   postgresql_nt:
     driver: overlay
+    attachable: true
     
 
 volumes:
