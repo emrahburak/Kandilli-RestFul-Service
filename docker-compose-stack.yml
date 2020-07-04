@@ -1,0 +1,112 @@
+version: "3.2"
+
+services:
+  djangoapp_front:
+    image: emrahburak/api-lab-kandilli-front-prod:0.1.0
+    # build:
+    #   context: ./kandilli_front_service/
+    volumes:
+      - djangoapp_front_vol:/app
+
+    env_file:
+      - ./config/db/.env
+    networks:
+      - nginx_front_nt
+      - postgresql_nt
+    depends_on:
+      - databasepostgresql
+
+  djangoapp_back:
+
+    image: emrahburak/api-lab-kandilli-back-prod:0.4.0
+    # build:
+    #   context: ./kandilli_back_service/
+    volumes:
+      - djangoapp_back_vol:/app
+
+    env_file:
+      - ./config/db_remote/.env
+    networks:
+      - nginx_back_nt
+      - postgresql_nt
+    depends_on:
+      - databasepostgresql
+
+        
+
+  nginx_front:
+    image: emrahburak/nginx-health-kandilli-curl:latest 
+    ports:
+      - 80:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - djangoapp_front
+    networks:
+      - nginx_front_nt
+    healthcheck:
+      test: curl -sS http://0.0.0.0/api/kandilli/index/ || exit 1
+      # test: curl http://0.0.0.0:8000/api/kandilli/remote/ || exit 1
+      interval: 20s
+      timeout: 2s
+      retries: 2
+
+        
+  nginx_back:
+    image: emrahburak/nginx-health-kandilli-curl:latest 
+    ports:
+      - 81:80
+    volumes:
+      - ./config/nginx_back/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - djangoapp_back
+    networks:
+      - nginx_back_nt
+    healthcheck:
+      test: curl -sS http://0.0.0.0/api/service/kandilli/ || exit 1
+      interval: 1m
+      timeout: 30s
+      retries: 2
+
+  databasepostgresql:
+    image: postgres:latest
+      
+    env_file:
+      - ./config/db/.env
+    volumes:
+      - databasepostgresql_volume_swarm:/var/lib/postgresql/data
+    networks:
+      - postgresql_nt
+    # deploy:
+    #   mode: replicated
+    #   replicas: 2
+
+
+
+        
+# networks:
+#   nginx_front_nt:
+#     driver: bridge
+#   nginx_back_nt:
+#     driver: bridge
+#   postgresql_nt:
+#     driver: bridge
+
+networks:
+  nginx_front_nt:
+    driver: overlay
+  nginx_back_nt:
+    driver: overlay
+  postgresql_nt:
+    driver: overlay
+    attachable: true
+    
+
+volumes:
+    databasepostgresql_volume_swarm:
+    djangoapp_front_vol:
+    djangoapp_back_vol:
+
+    # databasepostgresql_volume_remote:
+      
+  
