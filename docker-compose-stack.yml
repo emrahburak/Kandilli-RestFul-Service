@@ -2,9 +2,9 @@ version: "3.2"
 
 services:
   djangoapp_front:
-    # image: emrahburak/api-lab-kandilli-front-prod:0.1.0
-    build:
-      context: ./kandilli_front_service/
+    image: emrahburak/api-lab-kandilli-front-prod:0.1.0
+    # build:
+    #   context: ./kandilli_front_service/
     volumes:
       - djangoapp_front_vol:/app
 
@@ -18,9 +18,9 @@ services:
 
   djangoapp_back:
 
-    # image: emrahburak/api-lab-kandilli-back-prod:0.4.0
-    build:
-      context: ./kandilli_back_service/
+    image: emrahburak/api-lab-kandilli-back-prod:0.4.0
+    # build:
+    #   context: ./kandilli_back_service/
     volumes:
       - djangoapp_back_vol:/app
 
@@ -35,9 +35,7 @@ services:
         
 
   nginx_front:
-    # image: emrahburak/nginx-health-kandilli-curl:latest
-    build:
-      context: ./nginx.health/
+    image: emrahburak/nginx-health-kandilli-curl:latest 
     ports:
       - 80:80
     volumes:
@@ -55,9 +53,7 @@ services:
 
         
   nginx_back:
-    # image: emrahburak/nginx-health-kandilli-curl:latest
-    build:
-      context: ./nginx.health/
+    image: emrahburak/nginx-health-kandilli-curl:latest 
     ports:
       - 81:80
     volumes:
@@ -88,22 +84,22 @@ services:
 
 
         
-networks:
-  nginx_front_nt:
-    driver: bridge
-  nginx_back_nt:
-    driver: bridge
-  postgresql_nt:
-    driver: bridge
-
 # networks:
 #   nginx_front_nt:
-#     driver: overlay
+#     driver: bridge
 #   nginx_back_nt:
-#     driver: overlay
+#     driver: bridge
 #   postgresql_nt:
-#     driver: overlay
-#     attachable: true
+#     driver: bridge
+
+networks:
+  nginx_front_nt:
+    driver: overlay
+  nginx_back_nt:
+    driver: overlay
+  postgresql_nt:
+    driver: overlay
+    attachable: true
     
 
 volumes:
