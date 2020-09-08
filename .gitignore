@@ -5,3 +5,7 @@ docker-compose.prod.yml
 */*~
 */*/__pycache__
 */*/*/__pycache__
+*.sql
+*.sh
+kandilli_message_service/
+kandilli_rest_service
