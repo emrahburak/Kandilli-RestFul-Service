@@ -1,51 +1,13 @@
 version: "3.2"
 
 services:
-####################  WEB SCRAPPING  By Django#############################################
-##################################################################################
-  djangoapp_front:
-    # image: emrahburak/api-lab-kandilli-front-prod:0.1.0
-    build:
-      context: ./kandilli_front_service/
-    volumes:
-      - djangoapp_front_vol:/app
-
-    env_file:
-      - ./config/db/.env
-    networks:
-      - nginx_front_nt
-      - postgresql_nt
-    depends_on:
-      - databasepostgresql
-
-  nginx_front:
-      # image: emrahburak/nginx-health-kandilli-curl:latest
-      build:
-        context: ./nginx.health/
-      ports:
-        - 80:80
-      volumes:
-        - ./config/nginx/conf.d:/etc/nginx/conf.d
-      depends_on:
-        - djangoapp_front
-      networks:
-        - nginx_front_nt
-      healthcheck:
-        test: curl -sS http://0.0.0.0/api/kandilli/index/ || exit 1
-        # test: curl http://0.0.0.0:8000/api/kandilli/remote/ || exit 1
-        interval: 20s
-        timeout: 2s
-        retries: 2
-
-####################  WEB SCRAPPING  END ########################################
-##################################################################################
-
 #####################  RESTFul Service By SpringBoot  ###########################
-##################################################################################
 ##SPRIGBOOT-FRONT
   springboot_front:
     build:
       context: ./Api-Kandilli/
+    env_file:
+      - ./config/springboot_api/.env
     volumes:
       - springboot_front_vol:/app
     networks:
@@ -59,7 +21,7 @@ services:
     build:
       context: ./nginx.health/
     ports:
-      - 82:80
+      - 80:80
     volumes:
       - ./config/nginx_spring/conf.d:/etc/nginx/conf.d
     depends_on:
@@ -71,13 +33,8 @@ services:
       interval: 1m
       timeout: 30s
       retries: 2
-#####################  RESTFul Service By SpringBoot - END #######################
-##################################################################################
 
-#####################  RESTFul Service By Django #################################
-##################################################################################
-
-
+####################  WEB SCRAPPING  By Django#############################################
 ###DJANGO-BACKEND
   djangoapp_back:
 
@@ -113,12 +70,7 @@ services:
       timeout: 30s
       retries: 2
 
-#####################  RESTFul Service By Django #################################
-##################################################################################
-
-
 #####################  Database Service By Postrgsql##############################
-##################################################################################
 
   databasepostgresql:
     image: postgres:latest
@@ -133,14 +85,44 @@ services:
     #   mode: replicated
     #   replicas: 2
 
-#####################  Database Service By Postrgsql- END ########################
-##################################################################################
+ #####################  RESTFul Service By Django #################################
+ # djangoapp_front:
+ #   # image: emrahburak/api-lab-kandilli-front-prod:0.1.0
+ #   build:
+ #     context: ./kandilli_front_service/
+ #   volumes:
+ #     - djangoapp_front_vol:/app
 
+ #   env_file:
+ #     - ./config/db/.env
+ #   networks:
+ #     - nginx_front_nt
+ #     - postgresql_nt
+ #   depends_on:
+ #     - databasepostgresql
 
-        
+ # nginx_front:
+ #     # image: emrahburak/nginx-health-kandilli-curl:latest
+ #     build:
+ #       context: ./nginx.health/
+ #     ports:
+ #       - 80:80
+ #     volumes:
+ #       - ./config/nginx/conf.d:/etc/nginx/conf.d
+ #     depends_on:
+ #       - djangoapp_front
+ #     networks:
+ #       - nginx_front_nt
+ #     healthcheck:
+ #       test: curl -sS http://0.0.0.0/api/kandilli/index/ || exit 1
+ #       # test: curl http://0.0.0.0:8000/api/kandilli/remote/ || exit 1
+ #       interval: 20s
+ #       timeout: 2s
+ #       retries: 2
+       
 networks:
-  nginx_front_nt:
-    driver: bridge
+ # nginx_front_nt:
+ #   driver: bridge
   nginx_back_nt:
     driver: bridge
   postgresql_nt:
@@ -152,7 +134,7 @@ networks:
 
 volumes:
     databasepostgresql_volume_swarm:
-    djangoapp_front_vol:
+    #djangoapp_front_vol:
     djangoapp_back_vol:
     springboot_front_vol:
 
