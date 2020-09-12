@@ -6,7 +6,6 @@
 package com.apikandilli.ApiKandilli.RestApi;
 
 import com.apikandilli.ApiKandilli.Business.IKandilliService;
-import com.apikandilli.ApiKandilli.Business.KandilliServiceImpl;
 import com.apikandilli.ApiKandilli.Entities.Kandilli;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -6,6 +6,7 @@
 package com.apikandilli.ApiKandilli.Business;
 
 import com.apikandilli.ApiKandilli.DataAccess.IKandilliRepository;
+import com.apikandilli.ApiKandilli.Entities.Kandilli;
 import org.springframework.stereotype.Service;
 import com.apikandilli.ApiKandilli.Entities.Kandilli;
 import java.util.ArrayList;
