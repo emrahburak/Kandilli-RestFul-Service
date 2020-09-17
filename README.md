@@ -6,6 +6,7 @@ or
 
 #### Build  (with docker-compose)
 
+` docker-compose up -d`
 
 http://localhost/api/kandilli
 
