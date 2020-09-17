@@ -1,6 +1,6 @@
 ### Kandilli RESTful Service
 
-Check this.. [GET  ](http://34.91.94.9/api/kandilli/){:target="_blank"}
+Check this.. [GET  ](http://34.91.94.9/api/kandilli){:target="_blank"}
 
 or 
 
