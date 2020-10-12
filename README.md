@@ -4,7 +4,7 @@ created for educational purposes
 
 #### Build  (with docker-compose)
 
-` docker-compose up -d`
+` docker-compose up --build -d`
 
 http://localhost/api/kandilli
 
