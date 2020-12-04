@@ -10,4 +10,3 @@ docker-compose.prod.yml
 kandilli_message_service/
 kandilli_rest_service
 */target/*.jar
-config/springboot_api/.env
