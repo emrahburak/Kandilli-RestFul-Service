@@ -36,7 +36,7 @@ public class KandilliController {
     public ResponseEntity<List<Kandilli>> getAllKandilli(
                         @RequestParam(defaultValue = "0") Integer pageNo,
                         @RequestParam(defaultValue = "500") Integer pageSize,
-                        @RequestParam(defaultValue = "tarih") String sortBy){
+                        @RequestParam(defaultValue = "id") String sortBy){
         
         List<Kandilli> list = service.getAllKandilli(pageNo, pageSize, sortBy);
         
